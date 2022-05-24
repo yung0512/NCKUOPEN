@@ -11,6 +11,59 @@ services:
     container_name: frontend
     ports:
       - "4000:4000"
+  db:
+    platform: linux/x86_64
+    image: "mysql:5.7"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+    expose:
+      - "3306"
+    volumes:
+      - db:/var/run/mysqld
+    logging:
+      driver: none
+    ports:
+      - "3306:3306"
+  redis:
+    image: redis:4.0-alpine
+    command: redis-server
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
+    logging:
+      driver: none
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: bundle exec rails s -p 3000 -e production -b '0.0.0.0'
+    environment:
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      DB_NAME: nckuopen
+      DB_PORT: 3306
+      DB_HOST: db
+      RAILS_ENV: production
+      RAILS_MAX_THREADS: 5
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      BUNDLE_PATH: /usr/local/bundle
+    volumes:
+      - ./backend:/rails-app
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "db"
+      - "redis"
+volumes:
+  db:
+  bundle:
+  redis:
 #   backend:
 #     build:
 #       context: ./backend

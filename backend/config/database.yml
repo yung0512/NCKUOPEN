@@ -2,20 +2,28 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  port: <%= ENV['DB_PORT'] %>
-  database: <%= ENV['DB_NAME'] %>
-  socket: /var/run/mysqld/mysqld.sock
-  host: db
-
-
-development:
-  <<: *default
+  timeout: 5000
 
 test:
-  <<: *default
+  adapter: mysql2
+  encoding: utf8mb4
+  database: NCKUOPEN_test
+  host: localhost
+  username: root
+  password:
+
+staging:
+  adapter: mysql2
+  encoding: utf8mb4
+  database: NCKUOPEN_test
+  host: localhost
+  username: root
+  password:
 
 production:
-  <<: *default
-
+  adapter: mysql2
+  encoding: utf8mb4
+  database: NCKUOPEN_production
+  host: localhost
+  username: root
+  password:
