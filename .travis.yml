@@ -1,26 +1,23 @@
+cache: bundler
 jobs:
   include:
-    stage: build
+    - stage: build backend
     - language: ruby
-      ruby: 
-        - 2.7.3
+      ruby: 2.7.3
       before_install:
         - cd backend/
       install: 
         - bundle install
       script:
         - echo "ruby script"
+    - stage: build frontend
     - language: node_js
-      node_js:
-        - 16.10.0
+      node_js: 16.10.0
       before_install:
         - cd frontend/
         - yarn install
       script:
         - yarn build
-addons:
-  ssh_known_hosts:
-    - {DEPLOY_HOST}
 before_install:
 - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
   -in deploy_rsa.enc -out deploy_rsa -d
