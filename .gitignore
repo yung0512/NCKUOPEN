@@ -7,6 +7,10 @@ backend/puma.pid
 backend/puma.state
 backend/ruby-build/
 
+# for travis CI
+deploy_rsa.pub
+deploy_rsa
+
 # Ignore bundler config.
 backend/.bundle
 
