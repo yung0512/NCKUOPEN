@@ -17,7 +17,9 @@ jobs:
         - cd frontend/
         - yarn install
       script:
-        - yarn build
+        - yarn build  
+    - stage: deploy
+
 before_install:
 - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
   -in deploy_rsa.enc -out deploy_rsa -d
@@ -34,7 +36,7 @@ env:
   - secure: VinGf+KFm+ma/HrEEccgFoEYyTXl9d86tPM+bAN3xe+JqRrRl8uRVr0gU6mPO/AUbf27kCt4vnBMRr9F60RT9F4ZuvVysz7q/zOq2eBmn6/+EyWxR/JqcmJuwUsYOUR4dmAwl9JctX0FCp6qOxQS9BLcLyl1jqKWLf17P4LODYkRSHBggfLw+l1+42mC/XTmxA4nVxHknbTDSsdtWaNE/uIDEoVVOzWPDi+FpK4i3/N7xTkPUCZmmeRYJpauoVqx8pPSYnrh0tVGhyZdnZOnoAWR85hwlRqCfQW26PcDI9F7ju0RVOZJ3X3NjrzeTCkZNwGv5creu99Fyf58NOwEpip4QevZg9vA14+DD2t9TA9WaGzSG/qh+XY0r/igcImnN/q3C9I2LdTSP9G2xKBsmu27BzNGSx3R69sIFdicn0ZyW62iwi4r/SixJySW4c4Cxlc9ND3NQ8ALUFGYboNy056AmXpb3cg1j2jNZcK1gcikwsVG4Vpq/Cjq8kRTQIBJ58VQ59/c19wjoOfr9wsqsz0Gm4qkhPsrMKJ0TeNHN+D3tF0moB5PRvda7C/Ek03sAR3JvwTqyxXeZqrl+eYdflfnaiRF1/OiREbeTXNIJS5rjGku16OcSn6SO9VxEG0MSZFXTUdC/TXDWY1RMCEUijRFwyIkBZdm7mz0bgou4ww=
   - secure: T6pehO0HrHSZMI2gdGgfNv8QZ01eiWpXFwaRUpn9pvBx5V/Jxe5KwWS3ci5ZUpRbhGBZtnc2IEyaQbGC1EcHrtrKrq6noL5w4VHMUk7thif0bgkJfkSC+h4G4mS5cQubNW0oS3Q7wd5lVch9qAwyf4GOjDxmloj9DcuCnqY2VPR8vZj0ylYVzfs8db1WBiaaoeMICx0+9VVHHMqKjqeOKRQpyb2Rl02/PgZDzJyBOE783bwh0CajYqMKWkNN2BNdier5hs4ch2nCMcTWd7nI7PER+gPg86vxBrvIfYtiEN7erVa7exeHhWjRKOq+Ph3FWiwjz05lqLleKurmlb8wtG0Lhvqy8m23QTQbnzFsNjRnduDKCzS/frA9waQgllv6vHU8OIbBdJw6JUjZpmKZMtt3aZaiiPisvnhEasb4SGoIZT8epRc7+XYBrMnfv3ia+rgVDf0/yH8AYChiq6y28dShpuNtrHVv8ioFK6FjkcGPgooJb+fLXSFOAoBWB5zafblV7c/64314u2UPQfhguGFD5yIAxV+Lr2llJtpkoqBZDnPUGbATeggu8m9R26ft/yApYPY4ux3n3BvjG7P6Uvq4FUG0xHNfD9UALrCJvL6ozgIlBp1tINGSVOCRZSTsQRsmHOIwUGHMMw1IgJpMrHubvoLdbcVMbAsfJd6+Cso=
 after_script:
-  - ssh -i ./deploy_key {DEPLOY_USER}@{DEPLOY_HOST} cd NCKUOPEN && git pull origin main
+  - ssh -i ./deploy_rsa {DEPLOY_USER}@{DEPLOY_HOST} cd NCKUOPEN && git pull origin main
   - cd frontend && yarn install
   - yarn build
   - sudo systemctl restart puma
