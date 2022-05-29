@@ -25,6 +25,8 @@ jobs:
         - chmod 600 ./deploy_rsa
         - ssh-add ./deploy_rsa
         - echo -e "Host ${DEPLOY_HOST}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+      script:
+        echo "start connect to linode"
       after_success:
         - ssh -i ./deploy_rsa deploy@139.162.112.224 && 
           cd NCKUOPEN && git pull origin main &&
