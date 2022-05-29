@@ -33,7 +33,7 @@ jobs:
           cd frontend && yarn install &&
           yarn build &&
           sudo systemctl restart puma &&
-          sudo systemctl restart nextjs
+          sudo systemctl restart nextjs"
 branches:
   only:
   - main
