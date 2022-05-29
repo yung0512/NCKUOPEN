@@ -8,8 +8,6 @@ jobs:
         - cd backend/
       install: 
         - bundle install
-      script:
-        - echo "ruby script"
     - stage: build frontend
     - language: node_js
       node_js: 16.10.0
