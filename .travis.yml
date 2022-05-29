@@ -1,4 +1,3 @@
-cache: bundler
 jobs:
   include:
     - stage: build backend
