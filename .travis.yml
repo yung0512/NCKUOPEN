@@ -26,7 +26,8 @@ jobs:
         - ssh-add ./deploy_rsa
         - echo -e "Host ${DEPLOY_HOST}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
       script:
-        - ssh -i ./deploy_rsa {DEPLOY_USER}@{DEPLOY_HOST} cd NCKUOPEN && git pull origin main
+        - ssh -i ./deploy_rsa deploy@139.162.112.224 
+        - cd NCKUOPEN && git pull origin main
         - cd frontend && yarn install
         - yarn build
         - sudo systemctl restart puma
