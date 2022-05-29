@@ -28,7 +28,7 @@ jobs:
       script:
         echo "start connect to linode"
       after_success:
-        - ssh -i ./deploy_rsa deploy@139.162.112.224
+        - ssh -i ./deploy_rsa deploy@139.162.112.224 "
           cd NCKUOPEN && git pull origin main &&
           cd frontend && yarn install &&
           yarn build &&
