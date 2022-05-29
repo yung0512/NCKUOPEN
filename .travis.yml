@@ -8,7 +8,7 @@ jobs:
       install:
         - bundle install
       script:
-        - echo "test build rails app"
+        - echo "build backend done"
     - stage: build frontend
       language: node_js
       node_js: 16.10.0
@@ -35,14 +35,14 @@ jobs:
         yarn install && 
         yarn build && 
         cd ../backend &&
-        bundle exec rake db:migrate &&
+        RAILS_ENV=production bundle exec rake db:migrate &&
         sudo systemctl restart puma && 
         sudo systemctl restart next"
 notifications:
   slack:
     secure: f+IxS0M5FbzarfmH3Pn4u8zesLWf8R6KYMuqFizyWAbimXs028WgCZfVqKds1z2oV9ygjH9q7XsqecY/Ju1RcqKZMwJG3NKtGHe3b09FJgBuEyw2XAf0tVov9ZkPY6r04SP/ZtrQaKX0dTEQJPz/e1jyZpO9RK9ExRA5ZVeujtDBV2fqy+X1Xf4sJJ74KuK54/sWrscuVkOadSIe11rq+xh+gPq3WGdPjej0BKhTa+wgppLACpoTxR+fix+mLoT0rgaVolFOvk1PO8ENCzVATW4DqApHFkDAizstnAl2xtCdA7onk8lHoc4A7aPnIR80Y9baMYf5X91fn5sKmtCaRZN8unf/OsvJDJe126B7ajdfJobXpvyCSqNOfF6v4QACTBPhfCmTy81ehBeUJbrhN3qGUnEbGO4Qr5DI8Kurutfs08F3zkjKZvDjHnrZcmAV4/pOP+JLwWTr6fCjegUO3kc/trMtNu+w03KQ0VLLZMw95sylei+BADqTLwQPfcwSyANWobLFeS/e6Iq92jUqOxZoaJcKpglL/FXq4x8IL7N9HFO7Da7LyZ7RInbup58RUtiZ3UHq8o1Spj34MkVquyyty5fytpGRVZi6v93tQo5h4Wq6ppP5GMXEnqU0Dw/xQlT5QNf+SOUvEiX+jrNlbgRNm8ZpmVtUB66+3G6P3SQ=
     template:
-    - "*Deploy section is done* \n update content: %{commit_message} \n check update on <https://nckuopen.com| *NCKUOPEN webisite*>"
+    - "*Deploy section is done* \n *update content:* %{commit_message} \n check update on <https://nckuopen.com| *NCKUOPEN webisite*>"
 branches:
   only:
   - main
