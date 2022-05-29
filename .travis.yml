@@ -1,15 +1,15 @@
 jobs:
   include:
-    - language: ruby
-      ruby: 2.7.3
     - stage: build backend
+      language: ruby
+      ruby: 2.7.3
       before_install:
         - cd backend/
       install: 
         - bundle install
-    - language: node_js
-      node_js: 16.10.0
     - stage: build frontend
+      language: node_js
+      node_js: 16.10.0
       before_install:
         - cd frontend/
         - yarn install
