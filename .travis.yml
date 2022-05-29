@@ -5,7 +5,7 @@ jobs:
       ruby: 2.7.3
       before_install:
         - cd backend/
-      install: 
+      install:
         - bundle install
       script:
         - echo "test build rails app"
@@ -16,7 +16,7 @@ jobs:
         - cd frontend/
         - yarn install
       script:
-        - yarn build  
+        - yarn build
     - stage: deploy
       before_install:
         - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
@@ -28,16 +28,14 @@ jobs:
       script:
         echo "start connect to linode"
       after_success:
-        - ssh -i ./deploy_rsa deploy@139.162.112.224 "
-          cd NCKUOPEN && git pull origin main &&
-          cd frontend && yarn install &&
-          yarn build &&
-          sudo systemctl restart puma &&
-          sudo systemctl restart next"
+      - ssh -i ./deploy_rsa deploy@139.162.112.224 " cd NCKUOPEN && git pull origin
+        main && cd frontend && yarn install && yarn build && sudo systemctl restart
+        puma && sudo systemctl restart next"
 notifications:
-  slack: nckuopen:3R8lFfw14oJLkA8ZJQYCnXzB
-  template:
-  - "Deploying... 網站即將更新 \n 更新內容： %{commit_message}"
+  slack:
+    secure: f+IxS0M5FbzarfmH3Pn4u8zesLWf8R6KYMuqFizyWAbimXs028WgCZfVqKds1z2oV9ygjH9q7XsqecY/Ju1RcqKZMwJG3NKtGHe3b09FJgBuEyw2XAf0tVov9ZkPY6r04SP/ZtrQaKX0dTEQJPz/e1jyZpO9RK9ExRA5ZVeujtDBV2fqy+X1Xf4sJJ74KuK54/sWrscuVkOadSIe11rq+xh+gPq3WGdPjej0BKhTa+wgppLACpoTxR+fix+mLoT0rgaVolFOvk1PO8ENCzVATW4DqApHFkDAizstnAl2xtCdA7onk8lHoc4A7aPnIR80Y9baMYf5X91fn5sKmtCaRZN8unf/OsvJDJe126B7ajdfJobXpvyCSqNOfF6v4QACTBPhfCmTy81ehBeUJbrhN3qGUnEbGO4Qr5DI8Kurutfs08F3zkjKZvDjHnrZcmAV4/pOP+JLwWTr6fCjegUO3kc/trMtNu+w03KQ0VLLZMw95sylei+BADqTLwQPfcwSyANWobLFeS/e6Iq92jUqOxZoaJcKpglL/FXq4x8IL7N9HFO7Da7LyZ7RInbup58RUtiZ3UHq8o1Spj34MkVquyyty5fytpGRVZi6v93tQo5h4Wq6ppP5GMXEnqU0Dw/xQlT5QNf+SOUvEiX+jrNlbgRNm8ZpmVtUB66+3G6P3SQ=
+    template:
+    - "Deploying... 網站即將更新 \n 更新內容： %{commit_message}"
 branches:
   only:
   - main
@@ -46,9 +44,3 @@ env:
   - secure: Gf2YFWS/gyPmhO3jAyRLpbokmn7PGx2VhwRMW72ob3+ZWw5gkD9TSVY75mvtRJ02m4F2CzSjA9ypjckydTqexQPTJ4zBJyfFIykOKlnyXjdk/jIw/JE6HNCxHnj/MP5ZQ/wN2X32tx7XpJBxSQw42w39RgzNjTlNP9fQlXYwl+IpZjsKyWo+d9c4fV/nL4dFTEd+ddUcaivRjf75MB5xCrBFeIrt/acomDWMPOaFrLc0izjAADtic9dwCVoIt3FpBIHt3kIXzgTVEfyNmKaTAUNhXjX966JcroWvCjwFoH89tXiSDHueBJtXLkpHhTi5VxmZG2cv4bC7/h8g6uuGJfUD3h2C7xOl6VOytDtQHllF06U4w2qwXDiS1sU0MlQjFj1LSTfErH4JTvuZ1rU70/3l+yemcDGSNIX2sleC6yI00Yy1yQkFH7KqRd+X9fg4ph9oibxk2FmOzpJAovCctTu/+stMdAhdNlkYYrQbJ45fA3YxdP6VjjYjA8pnMMdYy1Y48JyvYDR1P3OTynNxNSGg7DVm4y7LMFkG7IPvjrixRfjzXaQWEB/SyYcPc5tRWgPPwLiMAStCXOcnRpZ/p5dCfP0EurqT2/l4omngFtimgUl1SmlqzBGBReaq4q3gbeXl5gYPMpR3h0ENJ/GWTHWwf3ZG87bn1qZbkWWTE0E=
   - secure: VinGf+KFm+ma/HrEEccgFoEYyTXl9d86tPM+bAN3xe+JqRrRl8uRVr0gU6mPO/AUbf27kCt4vnBMRr9F60RT9F4ZuvVysz7q/zOq2eBmn6/+EyWxR/JqcmJuwUsYOUR4dmAwl9JctX0FCp6qOxQS9BLcLyl1jqKWLf17P4LODYkRSHBggfLw+l1+42mC/XTmxA4nVxHknbTDSsdtWaNE/uIDEoVVOzWPDi+FpK4i3/N7xTkPUCZmmeRYJpauoVqx8pPSYnrh0tVGhyZdnZOnoAWR85hwlRqCfQW26PcDI9F7ju0RVOZJ3X3NjrzeTCkZNwGv5creu99Fyf58NOwEpip4QevZg9vA14+DD2t9TA9WaGzSG/qh+XY0r/igcImnN/q3C9I2LdTSP9G2xKBsmu27BzNGSx3R69sIFdicn0ZyW62iwi4r/SixJySW4c4Cxlc9ND3NQ8ALUFGYboNy056AmXpb3cg1j2jNZcK1gcikwsVG4Vpq/Cjq8kRTQIBJ58VQ59/c19wjoOfr9wsqsz0Gm4qkhPsrMKJ0TeNHN+D3tF0moB5PRvda7C/Ek03sAR3JvwTqyxXeZqrl+eYdflfnaiRF1/OiREbeTXNIJS5rjGku16OcSn6SO9VxEG0MSZFXTUdC/TXDWY1RMCEUijRFwyIkBZdm7mz0bgou4ww=
   - secure: T6pehO0HrHSZMI2gdGgfNv8QZ01eiWpXFwaRUpn9pvBx5V/Jxe5KwWS3ci5ZUpRbhGBZtnc2IEyaQbGC1EcHrtrKrq6noL5w4VHMUk7thif0bgkJfkSC+h4G4mS5cQubNW0oS3Q7wd5lVch9qAwyf4GOjDxmloj9DcuCnqY2VPR8vZj0ylYVzfs8db1WBiaaoeMICx0+9VVHHMqKjqeOKRQpyb2Rl02/PgZDzJyBOE783bwh0CajYqMKWkNN2BNdier5hs4ch2nCMcTWd7nI7PER+gPg86vxBrvIfYtiEN7erVa7exeHhWjRKOq+Ph3FWiwjz05lqLleKurmlb8wtG0Lhvqy8m23QTQbnzFsNjRnduDKCzS/frA9waQgllv6vHU8OIbBdJw6JUjZpmKZMtt3aZaiiPisvnhEasb4SGoIZT8epRc7+XYBrMnfv3ia+rgVDf0/yH8AYChiq6y28dShpuNtrHVv8ioFK6FjkcGPgooJb+fLXSFOAoBWB5zafblV7c/64314u2UPQfhguGFD5yIAxV+Lr2llJtpkoqBZDnPUGbATeggu8m9R26ft/yApYPY4ux3n3BvjG7P6Uvq4FUG0xHNfD9UALrCJvL6ozgIlBp1tINGSVOCRZSTsQRsmHOIwUGHMMw1IgJpMrHubvoLdbcVMbAsfJd6+Cso=
-# after_script:
-#   - ssh -i ./deploy_rsa {DEPLOY_USER}@{DEPLOY_HOST} cd NCKUOPEN && git pull origin main
-#   - cd frontend && yarn install
-#   - yarn build
-#   - sudo systemctl restart puma
-#   - sudo systemctl restart nextjs
