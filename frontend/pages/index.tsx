@@ -7,9 +7,9 @@ const Home: NextPage = () => {
   return (
     <div>
       <h1>This is the Home Page of NCKU</h1>
-      <p>Yeah!</p>
+      <p>Now use Travis CI to build test and deploy, fantastic</p>
     </div>
-  )
+  );
 }
 
 export default Home
