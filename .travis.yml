@@ -34,11 +34,10 @@ jobs:
           yarn build &&
           sudo systemctl restart puma &&
           sudo systemctl restart next"
-      notifications:
-        slack: nckuopen:3R8lFfw14oJLkA8ZJQYCnXzB
-        template:
-        - "Deploying... 網站即將更新 \n 更新內容： %{commit_message}"
-
+notifications:
+  slack: nckuopen:3R8lFfw14oJLkA8ZJQYCnXzB
+  template:
+  - "Deploying... 網站即將更新 \n 更新內容： %{commit_message}"
 branches:
   only:
   - main
