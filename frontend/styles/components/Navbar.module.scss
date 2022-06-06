@@ -1,0 +1,108 @@
+.navbar {
+  height: 100px;
+  background-color: grey;
+  display: flex;
+
+  &__logo {
+    display: flex;
+    height: 100%;
+    width: 300px;
+    margin-right: 100px;
+
+    .log__img {
+      width: auto;
+      height: 100px;
+      transform: scale(0.8) rotateY(180deg);
+    }
+
+    .log__text {
+      align-self: center;
+      transform: skewX(-5deg);
+      span {
+        font-weight: bold;
+        color: rgb(57, 57, 57);
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+
+    .nav__list {
+      align-self: flex-end;
+      list-style: none;
+      text-align: center;
+      
+      .nav__item {
+        padding: 0 20px;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        
+        &:not(:last-child):after {
+          position: absolute;
+          content: '';
+          width: 20px;
+          height: 1px;
+          top: 10px;
+          right: -10px;
+          transform: rotate(-55deg);
+          transform-origin: 50% 50%;
+          background-color: #BDBDBD;
+        }
+
+        &:before {
+          position: absolute;
+          content: '';
+          transition: all .2s;
+          width:0;
+          top: 100%;
+          left: 50%;
+          background-color: #BDBDBD;
+        }
+
+        &:hover:before {
+          width: 100%;
+          left: 0;
+          height: 2px;
+        }
+      }
+    }
+  }
+
+  &__login {
+    display: flex;
+    padding: 20px 0;
+
+    .login__buttons {
+      margin-right: 50px;
+      position: relative;
+        
+      .btn {
+        padding: 0 10px;
+
+        &_first{
+          position: relative;
+
+          &:not(:last-child):after {
+            position: absolute;
+            content: '';
+            width: 20px;
+            height: 1px;
+            top: 9px;
+            transform: rotate(-55deg);
+            transform-origin: 50% 50%;
+            background-color: #BDBDBD;
+          }
+        }
+      }
+
+      .login__icon {
+        position: absolute;
+        width: 20px;
+        top: 2px;
+        height: auto;
+      }
+    }
+  }
+}
