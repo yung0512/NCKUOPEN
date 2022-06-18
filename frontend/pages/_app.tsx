@@ -1,8 +1,27 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { useEffect } from "react";
+import type { AppProps } from "next/app";
+
+import axios from "../axios";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const nextFetch = (url: string, data?: {}) => {
+    return axios.post(url, data);
+  };
+
+  const initFrontend = () => {
+    const frontend = {
+      nextFetch,
+    };
+
+    window.frontend = frontend;
+  };
+
+  useEffect(() => {
+    initFrontend();
+  }, []);
+
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;

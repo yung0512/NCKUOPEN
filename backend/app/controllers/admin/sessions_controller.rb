@@ -5,7 +5,7 @@ module Admin
   class SessionsController < Devise::SessionsController
     def create
       user = AdminUser.find_by_email(params[:email])
-      byebug
+      
       if user && user&.valid_password?(params[:password])
         @current_user = user
 
