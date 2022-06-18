@@ -1,15 +1,29 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Navbar from "../components/navbar"
+import styles from "../styles/pages/Index.module.scss"
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <h1>This is the Home Page of NCKU</h1>
-      <p>Now use Travis CI to build test and deploy, fantastic</p>
-    </div>
-  );
+    <>
+      <Navbar />
+      <section className={styles["main-slider"]}>
+        <div className={styles["main-slider__item"]}>
+          <img src="/image 1.png" />
+        </div>
+      </section>
+      <section className={styles["main"]}>
+        <div className={styles["main__row"]}>
+          <div className={styles["main__registration"]}>
+            <button className={styles["registration__btn"]}>點我報名</button>
+          </div>
+          <div>
+            <div></div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }
 
 export default Home
