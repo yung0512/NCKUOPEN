@@ -1,0 +1,29 @@
+.user-block {
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  &__content{
+    display: flex;
+    margin-bottom: 20px;
+
+    .input_group {
+      font-size: 20px;
+      margin-right: 10px;
+
+      > label {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &__footer {
+
+    > button {
+      width: 80px;
+      height: 40px;
+    }
+  }
+}

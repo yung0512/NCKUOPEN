@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "../styles/components/Navbar.module.scss"
-import logo from "../public/badminton-birdie.svg"
+
 const Navbar = () => {
   return (
     <section className={styles.navbar}>

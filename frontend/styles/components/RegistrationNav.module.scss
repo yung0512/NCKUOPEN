@@ -1,0 +1,35 @@
+.registration-nav {
+
+  .status-block__container {
+    display: flex;
+    justify-content: space-between;
+
+    .status-block{
+      display: flex;
+      width: calc(100% / 6);
+      justify-content: space-around;
+
+      &__item {
+        padding: 5px;
+        height: 40px;
+        border: 1px solid orange;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+
+        > span {
+          align-self: center;
+        }
+      }
+
+      > span {
+        align-self: center;
+      }
+
+      &.active {
+        background-color: orange;
+      }
+    }
+  }
+}
