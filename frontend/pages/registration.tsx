@@ -1,10 +1,10 @@
 import { NextPage } from "next"
 import { useSelector, useDispatch } from "react-redux"
 
-import { registrationSelector } from "../redux/selectors/registrationSelectors"
-import UserBlock from "../components/pages/registration/UserBlock"
-import RegistrationNav from "../components/pages/registration/RegistrationNav"
-import styles from "../styles/pages/Registration.module.scss"
+import { registrationSelector } from "@redux/selectors/registrationSelectors"
+import UserBlock from "@components/pages/registration/UserBlock"
+import RegistrationNav from "@components/pages/registration/RegistrationNav"
+import styles from "@styles/pages/Registration.module.scss"
 
 const RegistrationPage: NextPage = () => {
   const registrationInfo = useSelector(registrationSelector)

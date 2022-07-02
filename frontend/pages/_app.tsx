@@ -4,7 +4,7 @@ import { wrapper, store } from "../redux/store"
 import { Provider } from "react-redux"
 
 import axios from "../axios"
-import "../styles/globals.css"
+import "@styles/globals.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const nextFetch = (url: string, data?: {}) => {

@@ -1,8 +1,8 @@
 import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 
-import { userSelector } from "../../../redux/selectors/registrationSelectors"
-import styles from "../../../styles/components/UserBlock.module.scss"
+import { userSelector } from "@redux/selectors/registrationSelectors"
+import styles from "@styles/components/UserBlock.module.scss"
 
 const UserBlock = () => {
   const user = useSelector(userSelector)

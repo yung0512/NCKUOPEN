@@ -1,11 +1,11 @@
 import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 
-import { registrationSelector } from "../../../redux/selectors/registrationSelectors"
-import { RegisterStatus } from "../../../redux/slices/registrationSlice"
-import styles from "../../../styles/components/RegistrationNav.module.scss"
-import { registerUser } from "../../../redux/actions/registration/registrationActions"
-import { Dispatch } from "../../../redux/store"
+import { registrationSelector } from "@redux/selectors/registrationSelectors"
+import { RegisterStatus } from "@redux/slices/registrationSlice"
+import styles from "@styles/components/RegistrationNav.module.scss"
+import { registerUser } from "@redux/actions/registration/registrationActions"
+import { Dispatch } from "@redux/store"
 
 const RegistrationNav = () => {
   const registration = useSelector(registrationSelector)
@@ -68,7 +68,9 @@ const RegistrationNav = () => {
           },
         ]
 
-  const handleStatusClick = (status: string) => {}
+  const handleStatusClick = (status: string) => {
+    dispatch(registerUser)
+  }
 
   console.log(registration.currentRegisterStatus)
   return (
