@@ -4,8 +4,12 @@ import { useSelector, useDispatch } from "react-redux"
 import { registrationSelector } from "@redux/selectors/registrationSelectors"
 import { RegisterStatus } from "@redux/slices/registrationSlice"
 import styles from "@styles/components/RegistrationNav.module.scss"
-import { registerUser } from "@redux/actions/registration/registrationActions"
+import {
+  createOrder,
+  registerUser,
+} from "@redux/actions/registration/registrationActions"
 import { Dispatch } from "@redux/store"
+import { actions as registrationActions } from "@redux/slices/registrationSlice"
 
 const RegistrationNav = () => {
   const registration = useSelector(registrationSelector)
@@ -17,7 +21,8 @@ const RegistrationNav = () => {
       ? [
           {
             status: "註冊",
-            isCurrentStatus: false,
+            isCurrentStatus:
+              currentRegisterStatus === RegisterStatus.NOT_REGISTER,
             onClick: () => {
               dispatch(registerUser)
             },
@@ -26,53 +31,66 @@ const RegistrationNav = () => {
       : [
           {
             status: "報名中",
-            isCurrentStatus: false,
+            isCurrentStatus:
+              currentRegisterStatus === RegisterStatus.REGISTERED,
             onClick: () => {
               dispatch(registerUser)
             },
           },
           {
             status: "單打建檔",
-            isCurrentStatus: false,
+            isCurrentStatus:
+              currentRegisterStatus === RegisterStatus.CREATE_SINGLE,
             onClick: () => {
-              console.log("單打建檔")
+              dispatch(
+                registrationActions.setCurrentRegisterStatus(
+                  RegisterStatus.CREATE_SINGLE
+                )
+              )
             },
           },
           {
             status: "雙打建檔",
-            isCurrentStatus: false,
+            isCurrentStatus:
+              currentRegisterStatus === RegisterStatus.CREATE_DOUBLE,
             onClick: () => {
-              console.log("雙打建檔")
+              dispatch(
+                registrationActions.setCurrentRegisterStatus(
+                  RegisterStatus.CREATE_DOUBLE
+                )
+              )
             },
           },
           {
             status: "團體建檔",
-            isCurrentStatus: false,
+            isCurrentStatus:
+              currentRegisterStatus === RegisterStatus.CREATE_GROUP,
             onClick: () => {
-              console.log("團體建檔")
+              dispatch(
+                registrationActions.setCurrentRegisterStatus(
+                  RegisterStatus.CREATE_GROUP
+                )
+              )
             },
           },
           {
             status: "組數統計",
-            isCurrentStatus: false,
+            isCurrentStatus:
+              currentRegisterStatus === RegisterStatus.GAMES_COUNT,
             onClick: () => {
               console.log("組數統計")
             },
           },
           {
             status: "報名完成",
-            isCurrentStatus: false,
+            isCurrentStatus:
+              currentRegisterStatus === RegisterStatus.COMPLETE_REGISTER,
             onClick: () => {
-              console.log("報名完成")
+              dispatch(createOrder)
             },
           },
         ]
 
-  const handleStatusClick = (status: string) => {
-    dispatch(registerUser)
-  }
-
-  console.log(registration.currentRegisterStatus)
   return (
     <div className={styles["registration-nav"]}>
       <h1>報名頁</h1>
@@ -82,9 +100,7 @@ const RegistrationNav = () => {
             <div className={styles["status-block"]} key={statusItem.status}>
               <div
                 className={styles["status-block__item"]}
-                onClick={() => {
-                  handleStatusClick(statusItem.status)
-                }}
+                onClick={statusItem.onClick}
               >
                 <span>{statusItem.status}</span>
               </div>

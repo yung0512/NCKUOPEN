@@ -8,7 +8,6 @@ const UserBlock = () => {
   const user = useSelector(userSelector)
   const dispatch = useDispatch()
 
-  console.log(user)
   return (
     <div className={styles["user-block"]}>
       <h1>Registration Form</h1>
@@ -32,11 +31,6 @@ const UserBlock = () => {
           <input type="email" placeholder="請輸入信箱" id="user_email" />
         </div>
       </div>
-      {/* <div className={styles["user-block__footer"]}>
-        <button>
-          <span>註冊</span>
-        </button>
-      </div> */}
     </div>
   )
 }

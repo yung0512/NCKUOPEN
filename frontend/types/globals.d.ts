@@ -1,14 +1,12 @@
+import { AxiosInstance } from "axios"
+
 export interface GlobalFrontend {
-  nextFetch(
-    action: string,
-    data?: {},
-    options?: PosFetchOption = {},
-  ): Promise<any>;
+  nextFetch: AxiosInstance
 }
 
 // extend Window definition
 declare global {
   interface Window {
-    frontend: GlobalFrontend;
+    frontend: GlobalFrontend
   }
 }
