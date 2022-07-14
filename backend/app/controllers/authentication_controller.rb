@@ -5,15 +5,22 @@
 class AuthenticationController < ApplicationController
   def login
     if valid_user?
-      render json: { message: 'ok', auth_token: @user.auth_token }, status: 200
+      render(json: { message: 'ok', auth_token: @user.auth_token }, status: 200)
     else
-      render json: { message: 'invalid user email or password' }, status: 401
+      render(json: { message: 'invalid user email or password' }, status: 401)
     end
   end
 
   def logout
     current_user.regenerate_auth_token
-    render json: { message: 'you have been logged out' }, status: 200
+    render(json: { message: 'you have been logged out' }, status: 200)
+  end
+
+  def sign_up
+    user_params = params.permit(:email, :name, :mobile)
+    @user = User.create(user_params, password: 123_456)
+
+    login
   end
 
   private

@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable
+  has_many :orders, dependent: :destroy
 
   has_secure_token :auth_token
 end
