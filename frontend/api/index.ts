@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from "axios"
 const nextFetchConfig: AxiosRequestConfig = {
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "https://nckuopen/api"
+      ? "https://nckuopen.com/api"
       : "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
