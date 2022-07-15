@@ -18,8 +18,8 @@ const Orders: NextPage = () => {
 
   return (
     <>
-      {orders.map((order) => (
-        <OrderBlock order={order} />
+      {orders.map((order, index) => (
+        <OrderBlock order={order} key={index.toString()} />
       ))}
     </>
   )
