@@ -76,7 +76,10 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
   config.hosts << '139.162.112.224'
   config.hosts << 'nckuopen.com'
-  
+
+  # for devise mailer
+  config.action_mailer.default_url_options = { host: 'nckuopen.com', port: 3000 }
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
