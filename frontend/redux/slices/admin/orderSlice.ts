@@ -4,7 +4,7 @@ import { Moment } from "moment"
 export type Order = {
   id: number
   orderGames: OrderGame[]
-  user: string
+  userName: string
   createdAt: string
 }
 

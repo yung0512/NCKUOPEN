@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   scope :admin, module: :admin, defaults: { format: :json } do
     devise_for :admin_user, { sessions: :sessions }
 
-    resources :orders, only: [:index]
+    get '/orders', to: 'orders#index'
   end
 
   # for register api

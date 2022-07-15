@@ -9,10 +9,6 @@ module Admin
 
     private
 
-    def params
-      @params ||= params.permit(:per, :page)
-    end
-
     def orders
       @orders ||= Order.includes(:user, :competition, { order_games: :players }).order(id: :asc).page(params[:page]).per(10)
     end
@@ -29,7 +25,6 @@ module Admin
               players: order_game.players.map do |player|
                 {
                   name: player.name,
-                  email: player.email,
                   mobile: player.mobile,
                   birthday: player.birthday
                 }
