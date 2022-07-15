@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import DatePicker from "react-datepicker"
+import moment from "moment"
 
 import {
   registrationSelector,
@@ -26,7 +27,10 @@ const PlayerBlock = (props: PlayerBlockProps) => {
 
   const onDatePickerChange = (date: Date) => {
     setDate(date)
-    const newPlayer: Player = { ...player, birthDate: date }
+    const newPlayer: Player = {
+      ...player,
+      birthday: moment(date).format("YYYY-MM-DD"),
+    }
     setPlayer(newPlayer)
   }
 
@@ -66,8 +70,9 @@ const PlayerBlock = (props: PlayerBlockProps) => {
         <label htmlFor="player-birth">生日</label>
         <DatePicker
           selected={date}
+          dateFormat="yyyy/MM/dd"
           onChange={onDatePickerChange}
-          value={player?.birthDate.toString()}
+          value={player?.birthday.toString()}
         />
       </div>
     </div>

@@ -2,7 +2,8 @@ import { Action, configureStore } from "@reduxjs/toolkit"
 import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { createWrapper } from "next-redux-wrapper"
-import rootReducer, { RootState } from "./reducers/combinedReducer"
+
+import rootReducer, { RootState } from "@redux/reducers/combinedReducer"
 
 export type GetState = () => RootState
 

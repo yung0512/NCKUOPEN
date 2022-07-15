@@ -7,3 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 AdminUser.create(email: 'jeff8651215@gmail.com', password: '12345678')
+Competition.create(name: '2023成大羽球公開賽', start_date: '2023-07-05', end_date: '2023-07-10', status: 'active')

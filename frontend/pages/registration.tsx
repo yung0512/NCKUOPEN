@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 
 import { registrationSelector } from "@redux/selectors/registrationSelectors"
 import UserBlock from "@components/pages/registration/UserBlock"
@@ -8,7 +8,6 @@ import styles from "@styles/pages/Registration.module.scss"
 import OrderGameInputBlock from "@components/pages/registration/OrderGameInputBlock"
 import OrderGameTable from "@components/pages/registration/OrderGameTable"
 import { RegisterStatus } from "@redux/slices/registrationSlice"
-import PlayerBlock from "@components/pages/registration/PlayerBlock"
 
 const showOrderGameTableStatuses = [
   RegisterStatus.CREATE_DOUBLE,

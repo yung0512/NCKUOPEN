@@ -6,7 +6,6 @@ class CreateOrders < ActiveRecord::Migration[7.0]
     create_table :orders do |t|
       t.references :competition, null: false
       t.references :user, null: false
-      t.integer :competition_id, null: false
       t.timestamps
     end
   end

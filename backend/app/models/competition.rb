@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Competition < ApplicationRecord
-  attr_accessible :title, :start_at, :end_at
   has_many :orders, dependent: :destroy
+
+  validates :status, inclusion: { in: %w[pending in_progress finished] }
+
+  scope :active, -> { where(status: 'in_progress').first }
 end

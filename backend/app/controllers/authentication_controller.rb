@@ -18,9 +18,20 @@ class AuthenticationController < ApplicationController
 
   def sign_up
     user_params = params.permit(:email, :name, :mobile)
-    @user = User.create(user_params, password: 123_456)
+    @user = User.find_by(email: user_params[:email])
 
-    login
+    if @user.present?
+      login
+    else
+
+      # 目前報名聯絡人是無需註冊，所以直接登入不用密碼
+      @user = User.new(user_params.merge(password: '123456'))
+      if @user.save
+        login
+      else
+        render(json: { message: 'login fail' }, status: 401)
+      end
+    end
   end
 
   private
@@ -29,7 +40,8 @@ class AuthenticationController < ApplicationController
     @user = User.find_by(email: params[:email])
     return false if @user.blank?
 
-    @user.valid_password?(params[:password])
+    # 這裡暫時寫死密碼
+    @user.valid_password?('123456')
     # valid_password? 是 Devise 提供的
   end
 end

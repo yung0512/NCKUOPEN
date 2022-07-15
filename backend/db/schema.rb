@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_130503) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_14_151801) do
   create_table "admin_users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -25,8 +25,47 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_130503) do
 
   create_table "competitions", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
-    t.datetime "start_at", null: false
-    t.datetime "end_at", null: false
+    t.date "start_at", null: false
+    t.date "end_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status", default: "pending", null: false
+  end
+
+  create_table "order_game_players", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "order_game_id", null: false
+    t.bigint "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_game_id"], name: "index_order_game_players_on_order_game_id"
+    t.index ["player_id"], name: "index_order_game_players_on_player_id"
+  end
+
+  create_table "order_games", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "group_type_id", null: false
+    t.bigint "game_type_id", null: false
+    t.index ["game_type_id"], name: "index_order_games_on_game_type_id"
+    t.index ["group_type_id"], name: "index_order_games_on_group_type_id"
+    t.index ["order_id"], name: "index_order_games_on_order_id"
+  end
+
+  create_table "orders", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "competition_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_orders_on_competition_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "players", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "identification_code", null: false
+    t.string "mobile", null: false
+    t.date "birthday", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

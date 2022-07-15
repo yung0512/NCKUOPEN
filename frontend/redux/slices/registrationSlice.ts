@@ -27,18 +27,21 @@ export type User = {
   mobile: string
   isRegistered: boolean
   affiliatedUnit?: string
+  authToken: string
 }
 
 export type Player = {
   name: string
   identificationCode: string
-  birthDate: Date
+  birthday: string
+  mobile: string
 }
 
 export const defaultPlayer = {
   name: "",
   identificationCode: "",
-  birthDate: moment(),
+  birthday: moment().format("YYYY-MM-DD"),
+  mobile: "0912123123",
 }
 
 export type OrderGame = {
@@ -62,6 +65,7 @@ const initialState: State = {
     mobile: "",
     affiliatedUnit: "",
     isRegistered: false,
+    authToken: "",
   },
   orderGames: [],
   editingOrderGame: {
