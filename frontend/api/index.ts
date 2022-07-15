@@ -1,9 +1,8 @@
 import axios, { AxiosRequestConfig } from "axios"
-import { env } from "process"
 
 const nextFetchConfig: AxiosRequestConfig = {
   baseURL:
-    env.NODE_ENV === "production"
+    process.env.NODE_ENV === "production"
       ? "https://nckuopen/api"
       : "http://localhost:3000",
   headers: {
